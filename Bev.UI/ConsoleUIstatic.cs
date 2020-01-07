@@ -59,32 +59,51 @@ namespace Bev.UI
 
         static ConsoleUI()
         {
-            verbatim = true;
             inProcedure = false;
-            maxColumns = Console.WindowWidth;
+            BeVerbatim();
         }
 
         #endregion
 
         #region Public methods
 
+        public static void BeSilent()
+        {
+            Verbatim = false;
+        }
+
+        public static void BeVerbatim()
+        {
+            Verbatim = true;
+            maxColumns = Console.WindowWidth;
+        }
+
         /// <summary>
-        /// If verbatim and not inside procedure, writes a line of text to the console.
+        /// If verbatim and not inside a procedure, writes a line of text to the console.
         /// </summary>
         /// <param name="obj">Text to be written.</param>
         public static void WriteLine(object obj)
         {
-            if (inProcedure)
-                return;
+            if (inProcedure) return;
             if (verbatim)
             {
                 string strObj = TruncateString(obj.ToString());
                 Console.WriteLine(strObj);
             }
         }
-        
+
+        public static void Write(object obj)
+        {
+            if (inProcedure) return;
+            if (verbatim)
+            {
+                string strObj = TruncateString(obj.ToString());
+                Console.Write(strObj);
+            }
+        }
+
         /// <summary>
-        /// If verbatim and not inside procedure, writes an empty line to the console.
+        /// If verbatim and not inside a procedure, writes an empty line to the console.
         /// </summary>
         public static void WriteLine()
         {
@@ -98,9 +117,9 @@ namespace Bev.UI
         public static void StartOperation(string message)
         {
             if (inProcedure) return;
-            inProcedure = true;
             procedureMessage = message.Trim();
-            if (verbatim) Console.Write($"{procedureMessage} ...");
+            Write($"{procedureMessage} ...");
+            inProcedure = true;
         }
 
         /// <summary>
@@ -135,9 +154,8 @@ namespace Bev.UI
         /// <param name="explanation">Additional information to user.</param>
         public static void Done(string explanation)
         {
-            if (!inProcedure) return;
             inProcedure = false;
-            if (verbatim) Console.WriteLine($"\r{procedureMessage} - done. {explanation}");
+            WriteLine($"\r{procedureMessage} - done. {explanation}");
         }
 
         /// <summary>
@@ -154,9 +172,8 @@ namespace Bev.UI
         /// <param name="explanation">Additional information to user.</param>
         public static void Abort(string explanation)
         {
-            if (!inProcedure) return;
             inProcedure = false;
-            if (verbatim) Console.WriteLine($"\r{procedureMessage} - aborted! {explanation}");
+            WriteLine($"\r{procedureMessage} - aborted! {explanation}");
         }
 
         /// <summary>
@@ -164,7 +181,7 @@ namespace Bev.UI
         /// </summary>
         public static void Welcome()
         {
-            if (verbatim) Console.WriteLine(WelcomeMessage);
+            WriteLine(WelcomeMessage);
         }
 
         /// <summary>
@@ -175,8 +192,7 @@ namespace Bev.UI
         public static void ErrorExit(string errorMessage, int errorCode)
         {
             if (errorMessage != "")
-                if (verbatim)
-                    Console.WriteLine("${errorMessage} (error code {errorCode})");
+                WriteLine($"{errorMessage} (error code {errorCode})");
             Environment.Exit(errorCode);
         }
         
