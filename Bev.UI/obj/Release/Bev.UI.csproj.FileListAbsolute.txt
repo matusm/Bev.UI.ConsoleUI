@@ -1,5 +1,0 @@
-C:\Users\Administrator\Source\Repos\Csharp-ConsoleUI\Bev.UI\bin\Release\Bev.UI.dll
-C:\Users\Administrator\Source\Repos\Csharp-ConsoleUI\Bev.UI\bin\Release\Bev.UI.pdb
-C:\Users\Administrator\Source\Repos\Csharp-ConsoleUI\Bev.UI\obj\Release\Bev.UI.dll
-C:\Users\Administrator\Source\Repos\Csharp-ConsoleUI\Bev.UI\obj\Release\Bev.UI.pdb
-C:\Users\Administrator\Source\Repos\Csharp-ConsoleUI\Bev.UI\obj\Release\Bev.UI.csprojAssemblyReference.cache

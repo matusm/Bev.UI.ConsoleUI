@@ -141,7 +141,7 @@ namespace Bev.UI
         }
 
         /// <summary>
-        /// Indicates the successful end of operation.
+        /// Indicates the successful end of operation. But only if inside an operation.
         /// </summary>
         public static void Done()
         {
@@ -149,11 +149,12 @@ namespace Bev.UI
         }
         
         /// <summary>
-        /// Indicates the successful end of operation.
+        /// Indicates the successful end of operation. But only if inside an operation.
         /// </summary>
         /// <param name="explanation">Additional information to user.</param>
         public static void Done(string explanation)
         {
+            if (inProcedure == false) return;
             inProcedure = false;
             WriteLine($"\r{procedureMessage} - done. {explanation}");
         }
