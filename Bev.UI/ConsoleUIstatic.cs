@@ -9,16 +9,10 @@ namespace Bev.UI
     public static class ConsoleUI
     {
 
-        #region Fields
-
         private static int maxColumns;     // number of chars per line in console window
         private static bool verbatim;      // if false - no console output
         private static bool inProcedure;   // if inside procedure - true
         private static string procedureMessage;     // part of message which is common to start/end
-
-        #endregion
-
-        #region Properties
 
         public static bool Verbatim
         {
@@ -53,9 +47,6 @@ namespace Bev.UI
             }
         }
 
-        #endregion
-
-        #region Ctor
 
         static ConsoleUI()
         {
@@ -63,14 +54,8 @@ namespace Bev.UI
             BeVerbatim();
         }
 
-        #endregion
 
-        #region Public methods
-
-        public static void BeSilent()
-        {
-            Verbatim = false;
-        }
+        public static void BeSilent() => Verbatim = false;
 
         public static void BeVerbatim()
         {
@@ -105,10 +90,7 @@ namespace Bev.UI
         /// <summary>
         /// If verbatim and not inside a procedure, writes an empty line to the console.
         /// </summary>
-        public static void WriteLine()
-        {
-            WriteLine("");
-        }
+        public static void WriteLine() => WriteLine("");
 
         /// <summary>
         /// Notifies the user about the start of a (lengthy) operation.
@@ -126,28 +108,19 @@ namespace Bev.UI
         /// Indicates to the user the start of file reading.
         /// </summary>
         /// <param name="fileName">File name.</param>
-        public static void ReadingFile(string fileName)
-        {
-            StartOperation($"Reading file {fileName.Trim()}");
-        }
+        public static void ReadingFile(string fileName) => StartOperation($"Reading file {fileName.Trim()}");
 
         /// <summary>
         /// Indicates to the user the start of file writing.
         /// </summary>
         /// <param name="fileName">File name.</param>
-        public static void WritingFile(string fileName)
-        {
-            StartOperation($"Writing file {fileName.Trim()}");
-        }
+        public static void WritingFile(string fileName) => StartOperation($"Writing file {fileName.Trim()}");
 
         /// <summary>
         /// Indicates the successful end of operation. But only if inside an operation.
         /// </summary>
-        public static void Done()
-        {
-            Done("");
-        }
-        
+        public static void Done() => Done("");
+
         /// <summary>
         /// Indicates the successful end of operation. But only if inside an operation.
         /// </summary>
@@ -162,11 +135,8 @@ namespace Bev.UI
         /// <summary>
         /// Indicates an aborted operation.
         /// </summary>
-        public static void Abort()
-        {
-            Abort("");
-        }
-        
+        public static void Abort() => Abort("");
+
         /// <summary>
         /// Indicates an aborted operation.
         /// </summary>
@@ -180,10 +150,7 @@ namespace Bev.UI
         /// <summary>
         /// Welcome message with assembly information.
         /// </summary>
-        public static void Welcome()
-        {
-            WriteLine(WelcomeMessage);
-        }
+        public static void Welcome() => WriteLine(WelcomeMessage);
 
         /// <summary>
         /// Exits the program with an exit code.
@@ -196,15 +163,12 @@ namespace Bev.UI
                 WriteLine($"{errorMessage} (error code {errorCode})");
             Environment.Exit(errorCode);
         }
-        
+
         /// <summary>
         /// Exits the program with an exit code.
         /// </summary>
         /// <param name="errorCode">Exit code provided to the operating system.</param>
-        public static void ErrorExit(int errorCode)
-        {
-            ErrorExit("", errorCode);
-        }
+        public static void ErrorExit(int errorCode) => ErrorExit("", errorCode);
 
         /// <summary>
         /// Waits until keypressed.
@@ -219,13 +183,9 @@ namespace Bev.UI
         /// <summary>
         /// Waits until keypressed. No info to user!
         /// </summary>
-        public static void WaitForKey()
-        {
-            WaitForKey("");
-        }
-        #endregion
+        public static void WaitForKey() => WaitForKey("");
 
-        #region Private methods
+
         /// <summary>
         /// Method to extract the assembly attributes.
         /// </summary>
@@ -249,7 +209,7 @@ namespace Bev.UI
             if (longString.Length <= maxColumns - 1) return longString;
             return longString.Substring(0, maxColumns - 4) + "...";
         }
-        #endregion
+
     }
 
 }
