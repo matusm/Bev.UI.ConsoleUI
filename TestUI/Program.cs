@@ -9,9 +9,22 @@ namespace TestUI
         static void Main(string[] args)
         {
             ConsoleUI.Welcome();
+            AudioUI.Beep();
+            Thread.Sleep(1000);
+            AudioUI.BeepHigh();
+            Thread.Sleep(1000);
+            AudioUI.BeepHighHigh();
+            Thread.Sleep(1000); 
+            AudioUI.Beep(400, 200);
+            Thread.Sleep(1000);
+
+            AudioUI.SystemBeep();
+            Thread.Sleep(1000);
+
+
             ConsoleUI.WriteLine();
 
-            using (new InfoOperationScope("Some operation"))
+            using (new InfoFileRead("XYZZY.txt"))
             {
                 Thread.Sleep(5000);
             }
@@ -21,7 +34,7 @@ namespace TestUI
             Thread.Sleep(1000);
             ConsoleUI.WriteLine();
 
-            using (new InfoOperationScope("A operation to be aborted"))
+            using (new InfoOperation("A operation to be aborted"))
             {
                 Thread.Sleep(5000);
                 ConsoleUI.Abort();

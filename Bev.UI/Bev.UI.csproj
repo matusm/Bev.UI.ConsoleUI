@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InfoOperationScope.cs" />
+    <Compile Include="AudioUI.cs" />
+    <Compile Include="InfoOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConsoleUIstatic.cs" />
   </ItemGroup>
