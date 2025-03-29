@@ -40,6 +40,20 @@ namespace TestUI
                 ConsoleUI.Abort();
             }
             ConsoleUI.WriteLine();
+
+            ConsoleUI.Welcome();
+            AudioUI.Beep();
+            Thread.Sleep(1000);
+            AudioUI.BeepHigh();
+            Thread.Sleep(1000);
+            AudioUI.BeepHighHigh();
+            Thread.Sleep(1000);
+            AudioUI.Beep(400, 200);
+            Thread.Sleep(1000);
+
+            AudioUI.SystemBeep();
+            Thread.Sleep(1000);
+
             ConsoleUI.WriteLine("the end");
 
         }
